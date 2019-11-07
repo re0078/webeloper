@@ -1,3 +1,4 @@
+
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -39,9 +40,7 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
         if not user:
             error = 'user not found'
-            return render(request, 'login.html', {'error': error})
         else:
             login(request, user)
             return redirect('web:homepage')
-    else:
-        return render(request, 'login.html', {'error': error})
+    return render(request, 'login.html', {'error': error})
