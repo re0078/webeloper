@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+
+{% block register_login %}
+
+    <h2>Register</h2>
+    <form id="login_form" method="post">
+        {% csrf_token %}
+
+        <label>
+            <input name="username" placeholder="username">
+        </label>
+        <label for="username">user name</label>
+        <label>
+            <input name="password" placeholder="password">
+        </label>
+        <label for="password">password</label>
+        <button type="submit" name="submit">login</button>
+    </form>
+
+    {% if error %}
+        <div id=”error”>
+            {{ error }}
+        </div>
+    {% endif %}
+
+
+{% endblock %}

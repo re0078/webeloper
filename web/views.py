@@ -7,28 +7,31 @@ from web.forms import RegisterForm
 
 
 def index(request):
-    return render(request, 'homepage.html', )
+    return render(request, 'homepage.html', {'logged_in': request.user.is_authenticated})
 
 
 def register(request):
-    if request.POST:
+    if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            last_name = form.cleaned_data.get('last_name')
-            first_name = form.cleaned_data.get('first_name')
-            username = form.cleaned_data.get('username')
-            password1 = form.cleaned_data.get('password1')
-            password2 = form.cleaned_data.get('password2')
-            email = form.cleaned_data.get('email')
-            user = authenticate(first_name=first_name,
-                                last_name=last_name,
-                                username=username,
-                                password1=password1,
-                                password2=password2,
-                                email=email)
-            login(request, user)
-            return redirect('web:homepage')
+            return redirect('web:register')
     else:
         form = RegisterForm()
     return render(request, 'register.html', {'form': form})
+
+
+def login_user(request):
+    error = None
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if not user:
+            error = 'user not found'
+            return render(request, 'login.html', {'error': error})
+        else:
+            login(request, user)
+            redirect('web:homepage')
+    else:
+        return render(request, 'login.html', {'error': error})
