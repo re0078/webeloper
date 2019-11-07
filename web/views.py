@@ -2,8 +2,8 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 
-
 # Create your views here.
+from web.forms import RegisterForm
 
 
 def index(request):
@@ -12,7 +12,7 @@ def index(request):
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
             last_name = form.cleaned_data.get('last_name')
@@ -28,7 +28,7 @@ def register(request):
                                 password2=password2,
                                 email=email)
             login(request, user)
-            return redirect('home')
+            return redirect('web:homepage')
     else:
-        form = UserCreationForm()
+        form = RegisterForm()
     return render(request, 'register.html', {'form': form})
