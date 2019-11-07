@@ -28,7 +28,8 @@ def register(request):
     else:
         form = RegisterForm()
     print(errors)
-    return render(request, 'register.html', {'form': form, 'errors': errors})
+    return render(request, 'register.html',
+                  {'form': form, 'errors': errors, 'logged_in': request.user.is_authenticated})
 
 
 def login_user(request):
@@ -42,23 +43,26 @@ def login_user(request):
         else:
             login(request, user)
             return redirect('web:homepage')
-    return render(request, 'login.html', {'error': error})
+    return render(request, 'login.html', {'error': error, 'logged_in': request.user.is_authenticated})
 
 
 def contact_us(request):
     if request.method == 'POST':
         text = request.POST['text']
         if 10 <= len(text) <= 250:
-            print('valid')
             return redirect('web:successful_submit')
     else:
-        return render(request, 'contact_us.html')
+        return render(request, 'contact_us.html', {'logged_in': request.user.is_authenticated})
 
 
 def successful_submit(request):
-    return render(request, 'successful_submit.html', )
+    return render(request, 'successful_submit.html', {'logged_in': request.user.is_authenticated})
 
 
 def logout_user(request):
     logout(request)
     return redirect('web:homepage')
+
+
+def panel(request):
+    return render(request, 'panel.html', {'logged_in': request.user.is_authenticated})

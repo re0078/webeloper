@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <title></title>
     <style>
         .navItem {
@@ -19,6 +19,7 @@
         <a id="register" class="navItem" href="{% url 'web:register' %}">register</a>
     {% else %}
         <a id="logout" href="{% url 'web:logout' %}" class="navItem">logout</a>
+        <a id="panel" href="{% url 'web:panel' %}" class="navItem">panel</a>
     {% endif %}
     <a id="homepage" href="/" class="navItem">home page</a>
     <a id="contact_us" href="{% url 'web:contact_us' %}" class="navItem">contact us</a>
