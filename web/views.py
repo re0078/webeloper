@@ -11,7 +11,7 @@ def index(request):
 
 
 def register(request):
-    if request.method == 'POST':
+    if request.POST:
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
