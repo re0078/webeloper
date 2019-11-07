@@ -14,9 +14,14 @@
 <body>
 
 <div id="navbar" style="display: flex; flex-direction: row; flex-wrap: wrap">
-    <a id="login" class="navItem" href="{% url 'web:login' %}">login</a>
-    <a id="register" class="navItem" href="{% url 'web:register' %}">register</a>
+    {% if not logged_in %}
+        <a id="login" class="navItem" href="{% url 'web:login' %}">login</a>
+        <a id="register" class="navItem" href="{% url 'web:register' %}">register</a>
+    {% else %}
+        <a id=”logout” class="navItem">logout</a>
+    {% endif %}
     <a id="homepage" href="/" class="navItem">home page</a>
+
 </div>
 
 {% block salam %}
