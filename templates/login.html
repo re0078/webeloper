@@ -18,7 +18,11 @@
         <button type="submit" name="submit">login</button>
     </form>
 
-    <div id="error"></div>
+    {% if error %}
+        <div id=”error”>
+            {{ error }}
+        </div>
+    {% endif %}
 
 
 {% endblock %}
