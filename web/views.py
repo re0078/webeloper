@@ -1,5 +1,6 @@
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
 # Create your views here.
@@ -11,14 +12,23 @@ def index(request):
 
 
 def register(request):
+    errors = []
     if request.method == 'POST':
         form = RegisterForm(request.POST)
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
+        username = request.POST['username']
+        if len(User.objects.filter(username=username)) > 0:
+            errors.append('نام کاربری شما در سیستم موجود است')
+        if password1 != password2:
+            errors.append('گذرواژه و تکرار گذرواژه یکسان نیستند')
         if form.is_valid():
             form.save()
             return redirect('web:register')
     else:
         form = RegisterForm()
-    return render(request, 'register.html', {'form': form})
+    print(errors)
+    return render(request, 'register.html', {'form': form, 'errors': errors})
 
 
 def login_user(request):
