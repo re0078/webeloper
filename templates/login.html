@@ -3,8 +3,8 @@
 
 {% block register_login %}
 
-    <h2>Register</h2>
-    <form id="login_form" method="post">
+    <h2>LOGIN</h2>
+    <form id="login_form" method="post" action="{% url 'web:login' %}">
         {% csrf_token %}
 
         <label>
@@ -19,7 +19,7 @@
     </form>
 
     {% if error %}
-        <div id=”error”>
+        <div id="error">
             {{ error }}
         </div>
     {% endif %}

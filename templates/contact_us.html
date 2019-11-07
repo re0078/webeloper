@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% block contact_us %}
+    <form id="contact_us_form" action="{% url 'web:contact_us' %}" method="post">
+
+        {% csrf_token %}
+
+        <label>
+            <input name="title" required placeholder="title">
+        </label>
+        <label>
+            <input name="email" required placeholder="email">
+        </label>
+        <label>
+<textarea name="text" required placeholder="context">
+
+</textarea>
+        </label>
+
+        <input type="submit" value="submit">
+
+    </form>
+{% endblock %}
