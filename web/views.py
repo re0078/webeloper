@@ -1,4 +1,4 @@
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
@@ -57,3 +57,8 @@ def contact_us(request):
 
 def successful_submit(request):
     return render(request, 'successful_submit.html', )
+
+
+def logout_user(request):
+    logout(request)
+    return redirect('web:homepage')
