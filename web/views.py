@@ -32,6 +32,6 @@ def login_user(request):
             return render(request, 'login.html', {'error': error})
         else:
             login(request, user)
-            redirect('web:homepage')
+            return redirect('web:homepage')
     else:
         return render(request, 'login.html', {'error': error})

@@ -4,7 +4,7 @@
 {% block register_login %}
 
     <h2>Register</h2>
-    <form id="register_form" method="post" action="{% url 'web:register' %}">
+    <form id="register_form" method="post" action="/register">
         {% csrf_token %}
         {{ form.as_p }}
 
