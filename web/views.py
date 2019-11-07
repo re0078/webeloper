@@ -30,5 +30,5 @@ def register(request):
             login(request, user)
             return redirect('web:homepage')
     else:
-        form = UserCreationForm()
+        form = RegisterForm()
     return render(request, 'register.html', {'form': form})

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title></title>
     <style>
-        .navItem{
+        .navItem {
             margin: 10px;
 
         }
@@ -13,15 +13,17 @@
 
 <body>
 
+<div id="navbar" style="display: flex; flex-direction: row; flex-wrap: wrap">
+    <a id="login" class="navItem">login</a>
+    <a id="register" class="navItem" href="{% url 'web:register' %}">register</a>
+    <a id="homepage" href="/" class="navItem">home page</a>
+</div>
+
 {% block salam %}
+
 
 {% endblock %}
 
-    <div id="navbar" style="display: flex; flex-direction: row; flex-wrap: wrap">
-        <a id="login" class="navItem">login</a>
-        <a id="register" class="navItem" href="{% url 'web:register' %}">register</a>
-        <a id="homepage" href="/" class="navItem">home page</a>
-    </div>
 
 <div>
     {% block register_login %}
