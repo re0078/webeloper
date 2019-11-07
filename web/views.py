@@ -51,8 +51,7 @@ def contact_us(request):
         text = request.POST['text']
         if 10 <= len(text) <= 250:
             return redirect('web:successful_submit')
-    else:
-        return render(request, 'contact_us.html', {'logged_in': request.user.is_authenticated})
+    return render(request, 'contact_us.html', {'logged_in': request.user.is_authenticated})
 
 
 def successful_submit(request):
