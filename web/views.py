@@ -1,4 +1,3 @@
-
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -44,3 +43,17 @@ def login_user(request):
             login(request, user)
             return redirect('web:homepage')
     return render(request, 'login.html', {'error': error})
+
+
+def contact_us(request):
+    if request.method == 'POST':
+        text = request.POST['text']
+        if 10 <= len(text) <= 250:
+            print('valid')
+            return redirect('web:successful_submit')
+    else:
+        return render(request, 'contact_us.html')
+
+
+def successful_submit(request):
+    return render(request, 'successful_submit.html', )
