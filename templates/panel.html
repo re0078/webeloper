@@ -1,1 +1,17 @@
 {% extends 'base.html' %}
+
+
+{% if logged_in %}
+    {% block profile %}
+
+        <a id="make_new_course" href="{% url 'web:create_course' %}">create_course</a>
+        <a id="courses" href="{% url 'web:courses' %}">courses</a>
+
+
+
+        </div>
+
+
+    {% endblock %}
+
+{% endif %}

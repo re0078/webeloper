@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block profile %}
+
+    <h2>create course</h2>
+    <form id="make_course" method="post" action="{% url 'web:create_course' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" name="submit">submit</button>
+    </form>
+
+
+    <div id="errors">
+        {% for error in errors %}
+            {{ error }}
+        {% endfor %}
+    </div>
+
+{% endblock %}

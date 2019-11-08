@@ -1,6 +1,7 @@
 from django.urls import path, include
 
-from web.views import index, register, login_user, contact_us, successful_submit, logout_user, panel, profile, setting
+from web.views import index, register, login_user, contact_us, successful_submit, logout_user, panel, profile, setting, \
+    create_course, courses
 
 app_name = "web"
 urlpatterns = [
@@ -13,4 +14,6 @@ urlpatterns = [
     path('panel', panel, name='panel'),
     path('profile', profile, name='profile'),
     path('setting', setting, name='setting'),
+    path('create_course', create_course, name='create_course'),
+    path('courses', courses, name='courses'),
 ]

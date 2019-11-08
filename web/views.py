@@ -1,10 +1,12 @@
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.core.mail import EmailMessage
 from django.shortcuts import render, redirect
 
 # Create your views here.
-from web.forms import RegisterForm
+from web.forms import RegisterForm, CourseForm
+from web.models import Course
 
 
 def index(request):
@@ -50,6 +52,7 @@ def contact_us(request):
     if request.method == 'POST':
         text = request.POST['text']
         if 10 <= len(text) <= 250:
+            email = EmailMessage()
             return redirect('web:successful_submit')
     return render(request, 'contact_us.html', {'logged_in': request.user.is_authenticated})
 
@@ -81,3 +84,31 @@ def setting(request):
         return redirect('web:profile')
     else:
         return render(request, 'setting.html', {'logged_in': request.user.is_authenticated})
+
+
+def create_course(request):
+    if request.method == 'POST':
+        course = Course(department=request.POST['department'],
+                        name=request.POST['name'],
+                        course_number=request.POST['course_number'],
+                        group_number=request.POST['group_number'],
+                        teacher=request.POST['teacher'],
+                        start_time=request.POST['start_time'],
+                        end_time=request.POST['end_time'],
+                        first_day=request.POST['first_day'],
+                        second_day=request.POST['second_day'],
+                        )
+        course.save()
+        return redirect('web:profile')
+    else:
+        form = CourseForm()
+        return render(request, 'create_course.html', {'form': form, 'logged_in': request.user.is_authenticated})
+
+
+def courses(request):
+    all_courses = Course.objects.all()
+    Course.objects.get(name='3123')
+
+    return render(request, 'courses.html', {'all_courses': all_courses
+        , 'logged_in': request.user.is_authenticated})
+
