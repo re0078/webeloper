@@ -34,7 +34,7 @@
                 <div>{{ course.start_time }} {{ course.end_time }}</div>
                 <div>{{ course.teacher }}</div>
                 {% for c in my_courses %}
-                    {% if c != course and c.exam_date == course.exam_date %}
+                    {% if c is not course and c.exam_date == course.exam_date %}
                         <span class="error">error</span>
                     {% endif %}
                 {% endfor %}
