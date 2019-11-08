@@ -34,4 +34,4 @@ class CourseForm(ModelForm):
     class Meta:
         model = Course
         fields = ['department', 'name', 'course_number', 'group_number', 'teacher', 'start_time', 'end_time',
-                  'first_day', 'second_day', 'exam_date']
+                  'first_day', 'second_day','exam_date']
