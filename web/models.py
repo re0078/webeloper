@@ -22,3 +22,10 @@ class Course(models.Model):
     first_day = models.IntegerField(choices=DAY_CHOICES)
     second_day = models.IntegerField(choices=DAY_CHOICES)
     students = models.ManyToManyField(User)
+
+
+class profile(models.Model):
+    image_url = models.CharField(max_length=1000)
+    user = models.OneToOneField(User,
+                                on_delete=models.CASCADE,
+                                primary_key=True, )

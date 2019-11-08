@@ -5,6 +5,9 @@
         <span id="text_first_name">{{ user.first_name }}</span>
         <span id="text_last_name">{{ user.last_name }}</span>
         <span id="text_user_name">{{ user.username }}</span>
+        {% if user.profile.image_url %}
+            <img id="profile_image" src="{{ user.profile.image_url }} ">
+        {% endif %}
 
 
 

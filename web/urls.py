@@ -1,7 +1,10 @@
+from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import path, include
 
 from web.views import index, register, login_user, contact_us, successful_submit, logout_user, panel, profile, setting, \
     create_course, courses, add_course
+
 
 app_name = "web"
 urlpatterns = [
@@ -18,3 +21,5 @@ urlpatterns = [
     path('courses', courses, name='courses'),
     path('add_course/<course_number>', add_course, name='add_course'),
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

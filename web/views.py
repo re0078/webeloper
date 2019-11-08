@@ -1,12 +1,14 @@
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.core.files.storage import FileSystemStorage
 from django.core.mail import EmailMessage
 from django.shortcuts import render, redirect
 
 # Create your views here.
 from web.forms import RegisterForm, CourseForm
 from web.models import Course
+from web.models import profile as Profile
 from django.core.mail import send_mail
 
 from webeloper import settings
@@ -82,8 +84,20 @@ def profile(request):
 
 
 def setting(request):
+
     if request.method == 'POST':
+
         user = request.user
+        if request.FILES:
+            myfile = request.FILES['myfile']
+            fs = FileSystemStorage()
+            filename = fs.save(myfile.name,myfile)
+            uploaded_file_url = fs.url(filename)
+            if not user.profile:
+                user.profile = Profile(image_url=uploaded_file_url).save()
+            else:
+                user.profile.image_url=uploaded_file_url
+                user.profile.save()
         user.first_name = request.POST['first_name']
         user.last_name = request.POST['last_name']
         user.save()
