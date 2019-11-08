@@ -1,26 +1,24 @@
 {% extends 'base.html' %}
 
 
-{% if logged_in %}
-    {% block profile %}
+{% block profile %}
 
-        <div id="all_courses">
+    <div id="all_courses">
 
-            {% for course in all_courses %}
-                <div class="{{ course.course_number }}_{{ course.group_number }}">
-                    <h4>{{ course.name }}</h4>
-                    <div>{{ course.department }}</div>
-                    <div>{{ course.get_first_day_display }}و{{ course.get_second_day_display }}</div>
-                    <div>{{ course.start_time }} {{ course.end_time }}</div>
-                    <div>{{ course.teacher }}</div>
-                </div>
+        {% for course in all_courses %}
+            <div class="{{ course.course_number }}_{{ course.group_number }}">
+                <h4>{{ course.name }}</h4>
+                <div>{{ course.department }}</div>
+                <div>{{ course.get_first_day_display }} و {{ course.get_second_day_display }}</div>
+                <div>{{ course.start_time }} {{ course.end_time }}</div>
+                <div>{{ course.teacher }}</div>
+            </div>
 
-            {% endfor %}
-
-
-        </div>
+        {% endfor %}
 
 
-    {% endblock %}
+    </div>
 
-{% endif %}
+
+{% endblock %}
+

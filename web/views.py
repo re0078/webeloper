@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from web.forms import RegisterForm, CourseForm
 from web.models import Course
+from django.core.mail import send_mail
 
 
 def index(request):
@@ -52,7 +53,7 @@ def contact_us(request):
     if request.method == 'POST':
         text = request.POST['text']
         if 10 <= len(text) <= 250:
-            email = EmailMessage()
+            send_mail(request.POST['title'], text, request.POST['email'], ['webe19lopers@gmail.com'], fail_silently=True)
             return redirect('web:successful_submit')
     return render(request, 'contact_us.html', {'logged_in': request.user.is_authenticated})
 
@@ -107,8 +108,5 @@ def create_course(request):
 
 def courses(request):
     all_courses = Course.objects.all()
-    Course.objects.get(name='3123')
-
     return render(request, 'courses.html', {'all_courses': all_courses
         , 'logged_in': request.user.is_authenticated})
-
