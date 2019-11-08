@@ -23,7 +23,7 @@ class Course(models.Model):
     end_time = models.CharField(max_length=100)
     first_day = models.IntegerField(choices=DAY_CHOICES)
     second_day = models.IntegerField(choices=DAY_CHOICES)
-    exam_day = models.CharField(max_length=100, default="")
+    exam_day = models.CharField(max_length=100, null=True)
     students = models.ManyToManyField(User)
 
     def is_valid(self):
