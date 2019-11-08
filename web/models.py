@@ -27,6 +27,7 @@ class Course(models.Model):
     students = models.ManyToManyField(User)
 
     def is_valid(self):
+        print(self.exam_day)
         if len(findall(r'^\d\d:\d\d$', str(self.start_time))) > 0 and len(
                 findall(r'^\d\d:\d\d$', str(self.end_time))) > 0 and len(
                     findall(r'^\d\d\d\d-\d\d-\d\d$', str(self.exam_day))) > 0:
