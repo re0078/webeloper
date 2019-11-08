@@ -115,15 +115,16 @@ def courses(request):
     result = None
     if request.method == 'POST':
         search_value = request.POST['search_query']
-        checks = request.POST.getlist('checks')
+        department = request.POST.get('department', False)
+        teacher = request.POST.get('teacher', False)
+        course = request.POST.get('course', False)
         result = []
-        if 'department' in checks or len(checks) == 0:
+        if department or not(department or teacher or course):
             result.extend(Course.objects.filter(department=search_value))
-        if 'teacher' in checks:
+        if teacher:
             result.extend(Course.objects.filter(teacher=search_value))
-        if 'course' in checks:
+        if course:
             result.extend(Course.objects.filter(name=search_value))
-        result = list(set(result))
         searched = True
 
     all_courses = Course.objects.all()
