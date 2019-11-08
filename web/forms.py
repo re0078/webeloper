@@ -20,7 +20,7 @@ class RegisterForm(UserCreationForm):
 class CourseForm(ModelForm):
     exam_day = forms.CharField(max_length=100,
                                widget=forms.TextInput
-                               (attrs={'id': 'exam_day'}))
+                               (attrs={'id': 'exam_date'}))
 
     # name = forms.CharField(max_length=100)
     # course_number = forms.IntegerField()
