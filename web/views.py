@@ -98,14 +98,12 @@ def setting(request):
             except:
                 user.profile = Profile(image_url=uploaded_file_url)
                 user.profile.save()
-            # if not user.profile:
-            #     user.profile = Profile(image_url=uploaded_file_url)
-            #     user.profile.save()
-            # else:
-            #     user.profile.image_url=uploaded_file_url
-            #     user.profile.save()
-        user.first_name = request.POST['first_name']
-        user.last_name = request.POST['last_name']
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        if len(str(first_name)) > 0:
+            user.first_name = first_name
+        if len(str(last_name)) > 0:
+            user.first_name = last_name
         user.save()
         return redirect('web:profile')
     else:
