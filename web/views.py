@@ -103,7 +103,7 @@ def setting(request):
         if len(str(first_name)) > 0:
             user.first_name = first_name
         if len(str(last_name)) > 0:
-            user.first_name = last_name
+            user.last_name = last_name
         user.save()
         return redirect('web:profile')
     else:
@@ -146,12 +146,13 @@ def courses(request):
             result.extend(Course.objects.filter(name=search_value))
         result = list(set(result))
         searched = True
-
+    my_courses = []
     all_courses = Course.objects.all()
     return render(request, 'courses.html', {'all_courses': all_courses
         , 'logged_in': request.user.is_authenticated,
                                             'searched': searched,
-                                            'searched_course': result})
+                                            'searched_course': result,
+                                            'my_courses': my_courses})
 
 
 def add_course(request, course_number):

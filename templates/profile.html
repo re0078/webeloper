@@ -8,11 +8,7 @@
         {% if user.profile.image_url %}
             <img id="profile_image" src="{{ user.profile.image_url }} ">
         {% endif %}
-
-
-
         <a id="setting" href="{% url 'web:setting' %}">setting</a>
-
 
     {% endblock %}
 
