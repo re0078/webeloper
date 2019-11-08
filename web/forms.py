@@ -18,7 +18,10 @@ class RegisterForm(UserCreationForm):
 
 
 class CourseForm(ModelForm):
-    # department = forms.CharField(max_length=100)
+    exam_day = forms.CharField(max_length=100,
+                               widget=forms.TextInput
+                               (attrs={'id': 'exam_date'}))
+
     # name = forms.CharField(max_length=100)
     # course_number = forms.IntegerField()
     # group_number = forms.IntegerField()
@@ -31,4 +34,4 @@ class CourseForm(ModelForm):
     class Meta:
         model = Course
         fields = ['department', 'name', 'course_number', 'group_number', 'teacher', 'start_time', 'end_time',
-                  'first_day', 'second_day', 'exam_day']
+                  'first_day', 'second_day']
