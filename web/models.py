@@ -30,7 +30,7 @@ class Course(models.Model):
         print(self.exam_day)
         if len(findall(r'^\d\d:\d\d$', str(self.start_time))) > 0 and len(
                 findall(r'^\d\d:\d\d$', str(self.end_time))) > 0 and len(
-                    findall(r'^\d\d\d\d-\d\d-\d\d$', str(self.exam_day))) > 0:
+            findall(r'^\d\d\d\d-\d\d-\d\d$', str(self.exam_day))) > 0:
             return True
         return False
 

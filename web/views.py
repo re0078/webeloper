@@ -156,8 +156,8 @@ def courses(request):
                                             'my_courses': my_courses})
 
 
-def add_course(request, course_number):
-    course = Course.objects.filter(course_number=course_number)[0]
+def add_course(request, course_number, group_number):
+    course = Course.objects.filter(course_number=course_number, group_number=group_number)[0]
     course.students.add(request.user)
     course.save()
     return redirect('web:courses')
