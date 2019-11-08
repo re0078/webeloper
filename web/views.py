@@ -121,12 +121,13 @@ def create_course(request):
                         end_time=request.POST['end_time'],
                         first_day=request.POST['first_day'],
                         second_day=request.POST['second_day'],
+                        exam_day=request.POST['exam_day'],
                         )
-        course.save()
-        return redirect('web:profile')
-    else:
-        form = CourseForm()
-        return render(request, 'create_course.html', {'form': form, 'logged_in': request.user.is_authenticated})
+        if course.is_valid():
+            course.save()
+            return redirect('web:profile')
+    form = CourseForm()
+    return render(request, 'create_course.html', {'form': form, 'logged_in': request.user.is_authenticated})
 
 
 def courses(request):

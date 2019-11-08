@@ -28,16 +28,7 @@ class CourseForm(ModelForm):
     # first_day = forms.ModelChoiceField([0, 1, 2, 3, 4])
     # second_day = forms.ModelChoiceField([0, 1, 2, 3, 4])
 
-    def is_valid(self):
-        if not super().is_valid():
-            return False
-        else:
-            if len(findall(r'^\d\d:\d\d$', str(self.start_time))) > 0 and len(
-                    findall(r'^\d\d:\d\d$', str(self.end_time))) > 0:
-                return True
-            return False
-
     class Meta:
         model = Course
         fields = ['department', 'name', 'course_number', 'group_number', 'teacher', 'start_time', 'end_time',
-                  'first_day', 'second_day']
+                  'first_day', 'second_day', 'exam_day']
