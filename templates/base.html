@@ -1,47 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+    .navItem {
+        margin: 11px;
+        text-decoration: none;
+        background-color: red;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+
+    }
+
+    .navContianer {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        background-color: black;
+        border-radius: 5px;
+
+    }
+
+    .navItem:hover {
+        background-color: yellow;
+        color: black;
+        box-shadow: #00b5ad 3px 3px 10px;
+    }
+
+    .salam {
+        text-align: center;
+        margin: 20px;
+        font-family: "B Nikoo";
+        font-size: 30px;
+    }
+
+    .loginDiv {
+        text-align: center;
+    }
+
+
+</style>
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <style>
-        .navItem {
-            margin: 11px;
-
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="Semantic-UI-CSS-master/semantic.min.css">
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+    <script src="Semantic-UI-CSS-master/semantic.min.js"></script>
 </head>
+<body style="background-color: #1cffbc">
 
-<body>
-
-<div id="navbar" style="display: flex; flex-direction: row; flex-wrap: wrap">
+<div id="navbar" class="ui secondary menu navContianer">
     {% if not logged_in %}
-        <a id="login" class="navItem" href="{% url 'web:login' %}">login</a>
+        <a id="login" class="navItem item" href="{% url 'web:login' %}">login</a>
         <a id="register" class="navItem" href="{% url 'web:register' %}">register</a>
     {% else %}
-        <a id="logout" href="{% url 'web:logout' %}" class="navItem">logout</a>
-        <a id="panel" href="{% url 'web:panel' %}" class="navItem">panel</a>
+        <a id="logout" href="{% url 'web:logout' %}" class="navItem item">logout</a>
+        <a id="panel" href="{% url 'web:panel' %}" class="navItem item">panel</a>
     {% endif %}
-    <a id="homepage" href="/" class="navItem">home page</a>
-    <a id="contact_us" href="{% url 'web:contact_us' %}" class="navItem">contact us</a>
+    <a id="homepage" href="/" class="navItem item">home page</a>
+    <a id="contact_us" href="{% url 'web:contact_us' %}" class="navItem item">contact us</a>
 
 </div>
-
-{% block salam %}
-{% endblock %}
+<div class="salam">
+    {% block salam %}
+    {% endblock %}
+</div>
 {% block contact_us %}
 {% endblock %}
 {% block successfull_submit %}
 {% endblock %}
 
-<div>
-    {% block register_login %}
+    <div class="loginDiv">
+        {% block register_login %}
 
-
-
-    {% endblock %}
-
-
-</div>
+        {% endblock %}
+    </div>
 
 </body>
 </html>

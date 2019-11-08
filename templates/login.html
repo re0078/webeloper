@@ -7,15 +7,15 @@
     <form id="login_form" method="post" action="{% url 'web:login' %}">
         {% csrf_token %}
 
+        <label for="username">user name</label><br>
         <label>
-            <input name="username" placeholder="username">
+            <input name="username" placeholder="username"><br>
         </label>
-        <label for="username">user name</label>
+        <label for="password">password</label><br>
         <label>
-            <input name="password" placeholder="password">
+            <input name="password" placeholder="password"><br>
         </label>
-        <label for="password">password</label>
-        <button type="submit" name="submit">login</button>
+        <button type="submit" name="submit">login</button><br>
     </form>
 
     {% if error %}
