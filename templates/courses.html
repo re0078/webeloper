@@ -33,6 +33,11 @@
                 <div>{{ course.get_first_day_display }} و {{ course.get_second_day_display }}</div>
                 <div>{{ course.start_time }} {{ course.end_time }}</div>
                 <div>{{ course.teacher }}</div>
+                {% for c in my_courses %}
+                    {% if c != course and c.exam_date == course.exam_date %}
+                        <span class="error">error</span>
+                    {% endif %}
+                {% endfor %}
                 <a id="remove_course" href="{% url 'web:remove_course' course.course_number course.group_number %}"
                    class="remove">remove course</a>
             </div>
