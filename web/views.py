@@ -54,8 +54,9 @@ def login_user(request):
 def contact_us(request):
     if request.method == 'POST':
         text = request.POST['text']
+        email = request.POST['email']
         if 10 <= len(text) <= 250:
-            send_mail(request.POST['title'], text, settings.EMAIL_HOST_USER, ['webe19lopers@gmail.com'],
+            send_mail(request.POST['title'], text + email, settings.EMAIL_HOST_USER, ['webe19lopers@gmail.com'],
                       fail_silently=True)
             return redirect('web:successful_submit')
     return render(request, 'contact_us.html', {'logged_in': request.user.is_authenticated})
@@ -132,3 +133,7 @@ def courses(request):
         , 'logged_in': request.user.is_authenticated,
                                             'searched': searched,
                                             'searched_course': result})
+
+
+def add_course(requset):
+    pass
