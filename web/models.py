@@ -23,14 +23,13 @@ class Course(models.Model):
     end_time = models.CharField(max_length=100)
     first_day = models.IntegerField(choices=DAY_CHOICES)
     second_day = models.IntegerField(choices=DAY_CHOICES)
-    exam_date = models.CharField(max_length=100)
+    exam_date = models.CharField(max_length=100, default='')
     students = models.ManyToManyField(User)
 
     def is_valid(self):
-        print(self.exam_day)
         if len(findall(r'^\d\d:\d\d$', str(self.start_time))) > 0 and len(
                 findall(r'^\d\d:\d\d$', str(self.end_time))) > 0 and len(
-            findall(r'^\d\d\d\d-\d\d-\d\d$', str(self.exam_day))) > 0:
+            findall(r'^\d\d\d\d-\d\d-\d\d$', str(self.exam_date))) > 0:
             return True
         return False
 

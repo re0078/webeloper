@@ -121,7 +121,7 @@ def create_course(request):
                         end_time=request.POST['end_time'],
                         first_day=request.POST['first_day'],
                         second_day=request.POST['second_day'],
-                        exam_day=request.POST['exam_day'],
+                        exam_date=request.POST['exam_date'],
                         )
         if course.is_valid():
             course.save()
