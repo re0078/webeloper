@@ -58,6 +58,7 @@
     {% else %}
         <a id="logout" href="{% url 'web:logout' %}" class="navItem item">logout</a>
         <a id="panel" href="{% url 'web:panel' %}" class="navItem item">panel</a>
+        <a id="profile" href="{% url 'web:profile' %}" class="navItem item">profile</a>
     {% endif %}
     <a id="homepage" href="/" class="navItem item">home page</a>
     <a id="contact_us" href="{% url 'web:contact_us' %}" class="navItem item">contact us</a>
@@ -71,12 +72,12 @@
 {% endblock %}
 {% block successfull_submit %}
 {% endblock %}
+{% block profile %}{% endblock %}
+<div class="loginDiv">
+    {% block register_login %}
 
-    <div class="loginDiv">
-        {% block register_login %}
-
-        {% endblock %}
-    </div>
+    {% endblock %}
+</div>
 
 </body>
 </html>

@@ -65,3 +65,8 @@ def logout_user(request):
 
 def panel(request):
     return render(request, 'panel.html', {'logged_in': request.user.is_authenticated})
+
+
+def profile(request):
+    user = request.user
+    return render(request, 'profile.html', {'user': user, 'logged_in': request.user.is_authenticated})
