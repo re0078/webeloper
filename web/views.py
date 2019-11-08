@@ -120,7 +120,7 @@ def courses(request):
         teacher = request.POST.get('teacher', False)
         course = request.POST.get('course', False)
         result = []
-        if department or not(department or teacher or course):
+        if department or not (department or teacher or course):
             result.extend(Course.objects.filter(department=search_value))
         if teacher:
             result.extend(Course.objects.filter(teacher=search_value))
@@ -135,5 +135,7 @@ def courses(request):
                                             'searched_course': result})
 
 
-def add_course(requset):
-    pass
+def add_course(requset, course_number):
+    course = Course.objects.filter(course_number=course_number)
+    course.students.add(requset.user)
+    course.save()

@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -20,3 +21,4 @@ class Course(models.Model):
     end_time = models.CharField(max_length=100)
     first_day = models.IntegerField(choices=DAY_CHOICES)
     second_day = models.IntegerField(choices=DAY_CHOICES)
+    students = models.ManyToManyField(User)
