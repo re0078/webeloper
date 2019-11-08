@@ -1,3 +1,5 @@
+from re import findall
+
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -21,7 +23,15 @@ class Course(models.Model):
     end_time = models.CharField(max_length=100)
     first_day = models.IntegerField(choices=DAY_CHOICES)
     second_day = models.IntegerField(choices=DAY_CHOICES)
+    exam_day = models.CharField(max_length=100, default="")
     students = models.ManyToManyField(User)
+
+    def is_valid(self):
+        if len(findall(r'^\d\d:\d\d$', str(self.start_time))) > 0 and len(
+                findall(r'^\d\d:\d\d$', str(self.end_time))) > 0 and len(
+                    findall(r'^\d\d\d\d-\d\d-\d\d$', str(self.exam_day))) > 0:
+            return True
+        return False
 
 
 class profile(models.Model):
