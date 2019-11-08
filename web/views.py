@@ -126,6 +126,7 @@ def courses(request):
             result.extend(Course.objects.filter(teacher=search_value))
         if course:
             result.extend(Course.objects.filter(name=search_value))
+        result = list(set(result))
         searched = True
 
     all_courses = Course.objects.all()
@@ -135,7 +136,8 @@ def courses(request):
                                             'searched_course': result})
 
 
-def add_course(requset, course_number):
-    course = Course.objects.filter(course_number=course_number)
-    course.students.add(requset.user)
+def add_course(request, course_number):
+    course = Course.objects.filter(course_number=course_number)[0]
+    course.students
     course.save()
+    return redirect('web:courses')

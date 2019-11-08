@@ -16,5 +16,5 @@ urlpatterns = [
     path('setting', setting, name='setting'),
     path('create_course', create_course, name='create_course'),
     path('courses', courses, name='courses'),
-    path('add_course', add_course, name='add_course'),
+    path('add_course/<course_number>', add_course, name='add_course'),
 ]
