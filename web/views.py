@@ -161,3 +161,11 @@ def add_course(request, course_number, group_number):
     course.students.add(request.user)
     course.save()
     return redirect('web:courses')
+
+
+def remove_course(request, course_number, group_number):
+    course = request.user.course_set.filter(course_number=course_number, group_number=group_number)[0]
+    request.user.course_set.remove(course)
+    course.students.remove(request.user)
+    course.save()
+    return redirect('web:courses')

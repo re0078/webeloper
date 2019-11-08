@@ -14,7 +14,8 @@
                     <div>{{ course.get_first_day_display }} و {{ course.get_second_day_display }}</div>
                     <div>{{ course.start_time }} {{ course.end_time }}</div>
                     <div>{{ course.teacher }}</div>
-                    <a id="add_course" href="{% url 'web:add_course' course.course_number course.group_number %}" class="add">add course</a>
+                    <a id="add_course" href="{% url 'web:add_course' course.course_number course.group_number %}"
+                       class="add">add course</a>
                 </div>
             {% endif %}
 
@@ -32,6 +33,8 @@
                 <div>{{ course.get_first_day_display }} و {{ course.get_second_day_display }}</div>
                 <div>{{ course.start_time }} {{ course.end_time }}</div>
                 <div>{{ course.teacher }}</div>
+                <a id="remove_course" href="{% url 'web:remove_course' course.course_number course.group_number %}"
+                   class="remove">add course</a>
             </div>
 
         {% endfor %}

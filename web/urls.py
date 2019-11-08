@@ -3,7 +3,7 @@ from django.conf.urls.static import static
 from django.urls import path, include
 
 from web.views import index, register, login_user, contact_us, successful_submit, logout_user, panel, profile, setting, \
-    create_course, courses, add_course
+    create_course, courses, add_course, remove_course
 
 app_name = "web"
 urlpatterns = [
@@ -19,6 +19,7 @@ urlpatterns = [
     path('create_course', create_course, name='create_course'),
     path('courses', courses, name='courses'),
     path('add_course/<course_number>/<group_number>', add_course, name='add_course'),
+    path('remove_course/<course_number>/<group_number>', remove_course, name='remove_course'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
