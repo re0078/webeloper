@@ -34,7 +34,7 @@
                 <div>{{ course.start_time }} {{ course.end_time }}</div>
                 <div>{{ course.teacher }}</div>
                 <a id="remove_course" href="{% url 'web:remove_course' course.course_number course.group_number %}"
-                   class="remove">add course</a>
+                   class="remove">remove course</a>
             </div>
 
         {% endfor %}
