@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block profile %}
+
+    <form id="setting_form" method="post" action="{% url 'web:setting' %}">
+        {% csrf_token %}
+        <input name="first_name">
+        <input name="last_name">
+        <input type="submit" value="submit">
+    </form>
+
+
+{% endblock %}

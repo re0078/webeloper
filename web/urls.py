@@ -1,6 +1,6 @@
 from django.urls import path, include
 
-from web.views import index, register, login_user, contact_us, successful_submit, logout_user, panel, profile
+from web.views import index, register, login_user, contact_us, successful_submit, logout_user, panel, profile, setting
 
 app_name = "web"
 urlpatterns = [
@@ -12,4 +12,5 @@ urlpatterns = [
     path('logout', logout_user, name='logout'),
     path('panel', panel, name='panel'),
     path('profile', profile, name='profile'),
+    path('setting', setting, name='setting'),
 ]

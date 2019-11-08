@@ -70,3 +70,14 @@ def panel(request):
 def profile(request):
     user = request.user
     return render(request, 'profile.html', {'user': user, 'logged_in': request.user.is_authenticated})
+
+
+def setting(request):
+    if request.method == 'POST':
+        user = request.user
+        user.first_name = request.POST['first_name']
+        user.last_name = request.POST['last_name']
+        user.save()
+        return redirect('web:profile')
+    else:
+        return render(request, 'setting.html', {'logged_in': request.user.is_authenticated})
