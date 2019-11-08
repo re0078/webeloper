@@ -9,6 +9,8 @@ from web.forms import RegisterForm, CourseForm
 from web.models import Course
 from django.core.mail import send_mail
 
+from webeloper import settings
+
 
 def index(request):
     return render(request, 'homepage.html', {'logged_in': request.user.is_authenticated})
@@ -53,7 +55,8 @@ def contact_us(request):
     if request.method == 'POST':
         text = request.POST['text']
         if 10 <= len(text) <= 250:
-            send_mail(request.POST['title'], text, request.POST['email'], ['webe19lopers@gmail.com'], fail_silently=True)
+            send_mail(request.POST['title'], text, settings.EMAIL_HOST_USER, ['webe19lopers@gmail.com'],
+                      fail_silently=True)
             return redirect('web:successful_submit')
     return render(request, 'contact_us.html', {'logged_in': request.user.is_authenticated})
 
@@ -68,7 +71,8 @@ def logout_user(request):
 
 
 def panel(request):
-    return render(request, 'panel.html', {'logged_in': request.user.is_authenticated})
+    return render(request, 'panel.html',
+                  {'logged_in': request.user.is_authenticated, 'admin': request.user.is_superuser})
 
 
 def profile(request):
