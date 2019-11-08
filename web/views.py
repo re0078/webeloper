@@ -111,6 +111,23 @@ def create_course(request):
 
 
 def courses(request):
+    searched = False
+    result = None
+    if request.method == 'POST':
+        search_value = request.POST['search_query']
+        checks = request.POST.getlist('checks')
+        result = []
+        if 'department' in checks or len(checks) == 0:
+            result.extend(Course.objects.filter(department=search_value))
+        if 'teacher' in checks:
+            result.extend(Course.objects.filter(teacher=search_value))
+        if 'course' in checks:
+            result.extend(Course.objects.filter(name=search_value))
+        result = list(set(result))
+        searched = True
+
     all_courses = Course.objects.all()
     return render(request, 'courses.html', {'all_courses': all_courses
-        , 'logged_in': request.user.is_authenticated})
+        , 'logged_in': request.user.is_authenticated,
+                                            'searched': searched,
+                                            'searched_course': result})

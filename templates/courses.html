@@ -19,5 +19,26 @@
     </div>
 
 
+    <form id="search_form" method="post" action="{% url 'web:courses' %}">
+        {% csrf_token %}
+        <label for="search_query"></label><input id="search_query" name="search_query">
+        <button name="submit">search</button>
+        <input type="checkbox" value="department" name="department" placeholder="department">
+        <input type="checkbox" value="teacher" name="teacher" placeholder="teacher">
+        <input type="checkbox" value="course" name="course" placeholder="course name">
+    </form>
+
+    {% if searched %}
+        <div id="search_result">
+            {% for course in searched_course %}
+                <div class="{{ course.course_number }}_{{ course.group_number }}">
+                    {{ course.name }}<br>
+                    {{ course.teacher }}
+                </div>
+            {% endfor %}
+        </div>
+
+    {% endif %}
+
 {% endblock %}
 
