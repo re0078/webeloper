@@ -84,20 +84,26 @@ def profile(request):
 
 
 def setting(request):
-
     if request.method == 'POST':
 
         user = request.user
         if request.FILES:
             myfile = request.FILES['myfile']
             fs = FileSystemStorage()
-            filename = fs.save(myfile.name,myfile)
+            filename = fs.save(myfile.name, myfile)
             uploaded_file_url = fs.url(filename)
-            if not user.profile:
-                user.profile = Profile(image_url=uploaded_file_url).save()
-            else:
-                user.profile.image_url=uploaded_file_url
+            try:
+                user.profile.image_url = uploaded_file_url
                 user.profile.save()
+            except:
+                user.profile = Profile(image_url=uploaded_file_url)
+                user.profile.save()
+            # if not user.profile:
+            #     user.profile = Profile(image_url=uploaded_file_url)
+            #     user.profile.save()
+            # else:
+            #     user.profile.image_url=uploaded_file_url
+            #     user.profile.save()
         user.first_name = request.POST['first_name']
         user.last_name = request.POST['last_name']
         user.save()
@@ -152,6 +158,6 @@ def courses(request):
 
 def add_course(request, course_number):
     course = Course.objects.filter(course_number=course_number)[0]
-    course.students
+
     course.save()
     return redirect('web:courses')
