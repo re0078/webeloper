@@ -6,6 +6,8 @@
     <div id="all_courses">
 
         {% for course in all_courses %}
+
+            {% if course not in my_courses %}
             <div class="{{ course.course_number }}_{{ course.group_number }}">
                 <h4>{{ course.name }}</h4>
                 <div>{{ course.department }}</div>
@@ -14,6 +16,7 @@
                 <div>{{ course.teacher }}</div>
                 <a id="add_course" href="{% url 'web:add_course' course.course_number %}" class="add">add course</a>
             </div>
+            {% endif %}
 
         {% endfor %}
 
